@@ -118,6 +118,139 @@ public class DesktopEntryFile
         this.keyList.add(this.singleMainWindow);
     }
 
+    public DesktopEntryFile withVersion(String version)
+    {
+        this.version.setValue(version);
+        return this;
+    }
+
+    public DesktopEntryFile withGenericName(String genericName)
+    {
+        this.genericName.setValue(genericName);
+        return this;
+    }
+
+    public DesktopEntryFile withNoDisplay(boolean noDisplay)
+    {
+        this.noDisplay.setValue(noDisplay);
+        return this;
+    }
+
+    public DesktopEntryFile withComment(String comment)
+    {
+        this.comment.setValue(comment);
+        return this;
+    }
+
+    public DesktopEntryFile withIcon(String icon)
+    {
+        this.icon.setValue(icon);
+        return this;
+    }
+
+    public DesktopEntryFile withHidden(boolean hidden)
+    {
+        this.hidden.setValue(hidden);
+        return this;
+    }
+
+    public DesktopEntryFile withOnlyShowIn(List<String> onlyShowIn)
+    {
+        this.onlyShowIn.setValues(onlyShowIn);
+        return this;
+    }
+
+    public DesktopEntryFile withNotShowIn(List<String> notShowIn)
+    {
+        this.notShowIn.setValues(notShowIn);
+        return this;
+    }
+
+    public DesktopEntryFile withDBusActivatable(boolean dBusActivatable)
+    {
+        this.dBusActivatable.setValue(dBusActivatable);
+        return this;
+    }
+
+    public DesktopEntryFile withTryExec(String tryExec)
+    {
+        this.tryExec.setValue(tryExec);
+        return this;
+    }
+
+    public DesktopEntryFile withExec(String exec)
+    {
+        this.exec.setValue(exec);
+        return this;
+    }
+
+    public DesktopEntryFile withPath(String path)
+    {
+        this.path.setValue(path);
+        return this;
+    }
+
+    public DesktopEntryFile withTerminal(boolean terminal)
+    {
+        this.terminal.setValue(terminal);
+        return this;
+    }
+
+    public DesktopEntryFile withAction(String actionName, String name, String icon, String exec)
+    {
+        ActionEntity ae = new ActionEntity(actionName, name, icon, exec).build();
+        this.actions.add(ae);
+        return this;
+    }
+
+    public DesktopEntryFile withMimeType(List<String> mimeType)
+    {
+        this.mimeType.setValues(mimeType);
+        return this;
+    }
+
+    public DesktopEntryFile withCategories(List<String> categories)
+    {
+        this.categories.setValues(categories);
+        return this;
+    }
+
+    public DesktopEntryFile withImplements(List<String> implement)
+    {
+        this.implement.setValues(implement);
+        return this;
+    }
+
+    public DesktopEntryFile withKeywords(List<String> keywords)
+    {
+        this.keywords.setValues(keywords);
+        return this;
+    }
+
+    public DesktopEntryFile withStartupNotify(boolean startupNotify)
+    {
+        this.startupNotify.setValue(startupNotify);
+        return this;
+    }
+
+    public DesktopEntryFile withStartupWMClass(String startupWMClass)
+    {
+        this.startupWMClass.setValue(startupWMClass);
+        return this;
+    }
+
+    public DesktopEntryFile withPrefersNonDefaultGPU(boolean prefersNonDefaultGPU)
+    {
+        this.prefersNonDefaultGPU.setValue(prefersNonDefaultGPU);
+        return this;
+    }
+
+    public DesktopEntryFile withSingleMainWindow(boolean singleMainWindow)
+    {
+        this.singleMainWindow.setValue(singleMainWindow);
+        return this;
+    }
+
     @Override
     public String toString()
     {
