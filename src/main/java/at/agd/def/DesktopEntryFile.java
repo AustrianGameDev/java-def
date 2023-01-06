@@ -1,5 +1,6 @@
 package at.agd.def;
 
+import at.agd.def.exception.InvalidValueException;
 import at.agd.def.pojo.*;
 
 import java.util.ArrayList;
@@ -35,9 +36,30 @@ public class DesktopEntryFile
 
     private List<Key> keyList;
 
-    public DesktopEntryFile(TypeEnum type, String name, String url)
+    public DesktopEntryFile(TypeEnum type, String name, String url) throws InvalidValueException
     {
         init();
+
+        switch(type)
+        {
+            case APPLICATION -> this.type.setValue("Application");
+            case LINK -> this.type.setValue("Link");
+            case DIRECTORY -> this.type.setValue("Directory");
+        }
+
+        this.name.setValue(name);
+
+        if(type == TypeEnum.LINK)
+        {
+            if(url == null)
+            {
+                throw new InvalidValueException("URL cannot be null when Type is set to Link!");
+            }
+            else
+            {
+                this.url.setValue(url);
+            }
+        }
     }
 
     private void init()
