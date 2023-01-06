@@ -35,7 +35,7 @@ public class DesktopEntryFile
 
     private List<Key> keyList;
 
-    public DesktopEntryFile(int type, String name, String url)
+    public DesktopEntryFile(TypeEnum type, String name, String url)
     {
         init();
     }
