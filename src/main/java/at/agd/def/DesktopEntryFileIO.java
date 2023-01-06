@@ -31,9 +31,4 @@ public class DesktopEntryFileIO
             throw new RuntimeException(e);
         }
     }
-
-    public static DesktopEntryFile readDefFromFile(String pathStr)
-    {
-        return null;
-    }
 }
