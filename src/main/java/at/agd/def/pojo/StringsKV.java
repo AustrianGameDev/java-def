@@ -29,7 +29,8 @@ public class StringsKV extends Key
         StringBuilder result = new StringBuilder(this.name + "=");
         for(int i = 0; i < values.size(); i++)
         {
-            result.append(values.get(i) + (i < values.size() - 1 ? ";" : ""));
+            result.append(values.get(i));
+            result.append((i < values.size() - 1 ? ";" : ""));
         }
         result.append("\n");
         return result.toString();
