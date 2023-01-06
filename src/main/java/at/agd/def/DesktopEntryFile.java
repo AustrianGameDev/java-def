@@ -117,4 +117,19 @@ public class DesktopEntryFile
         this.keyList.add(this.prefersNonDefaultGPU);
         this.keyList.add(this.singleMainWindow);
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder result = new StringBuilder("[Desktop Entry]\n");
+        for(Key item : this.keyList)
+        {
+            result.append(item.toString());
+        }
+        if(this.actions.size() > 0)
+        {
+            result.append(this.actions.actionsToString());
+        }
+        return result.toString();
+    }
 }
