@@ -13,7 +13,7 @@ public class StringsKV extends Key
         values = new ArrayList<>();
     }
 
-    public void withValues(List<String> values)
+    public void setValues(List<String> values)
     {
         this.values.addAll(values);
     }
