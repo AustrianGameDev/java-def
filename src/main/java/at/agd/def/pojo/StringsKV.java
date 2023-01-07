@@ -10,7 +10,7 @@ public class StringsKV extends Key
     public StringsKV(String name)
     {
         super(name);
-        values = new ArrayList<>();
+        this.values = new ArrayList<>();
     }
 
     public void setValues(List<String> values)
@@ -27,10 +27,10 @@ public class StringsKV extends Key
         }
 
         StringBuilder result = new StringBuilder(this.name + "=");
-        for(int i = 0; i < values.size(); i++)
+        for(int i = 0; i < this.values.size(); i++)
         {
-            result.append(values.get(i));
-            result.append((i < values.size() - 1 ? ";" : ""));
+            result.append(this.values.get(i));
+            result.append((i < this.values.size() - 1 ? ";" : ""));
         }
         result.append("\n");
         return result.toString();

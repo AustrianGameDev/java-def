@@ -10,11 +10,11 @@ public class DesktopEntryFile
 {
     private StringKV type;
     private StringKV version;
-    private StringKV name;
-    private StringKV genericName;
+    private LocaleStringKV name;
+    private LocaleStringKV genericName;
     private BooleanKV noDisplay;
-    private StringKV comment;
-    private StringKV icon;
+    private LocaleStringKV comment;
+    private LocaleStringKV icon;
     private BooleanKV hidden;
     private StringsKV onlyShowIn;
     private StringsKV notShowIn;
@@ -27,7 +27,7 @@ public class DesktopEntryFile
     private StringsKV mimeType;
     private StringsKV categories;
     private StringsKV implement;
-    private StringsKV keywords;
+    private LocaleStringsKV keywords;
     private BooleanKV startupNotify;
     private StringKV startupWMClass;
     private StringKV url;
@@ -36,7 +36,8 @@ public class DesktopEntryFile
 
     private List<Key> keyList;
 
-    public DesktopEntryFile(TypeEnum type, String name, String url) throws InvalidValueException
+    public DesktopEntryFile(TypeEnum type, String name, List<LocalizedString> localizedNames, String url)
+            throws InvalidValueException
     {
         init();
 
@@ -47,7 +48,7 @@ public class DesktopEntryFile
             case DIRECTORY -> this.type.setValue("Directory");
         }
 
-        this.name.setValue(name);
+        this.name.setValue(name, localizedNames);
 
         if(type == TypeEnum.LINK)
         {
@@ -66,11 +67,11 @@ public class DesktopEntryFile
     {
         this.type = new StringKV("Type");
         this.version = new StringKV("Version");
-        this.name = new StringKV("Name");
-        this.genericName = new StringKV("GenericName");
+        this.name = new LocaleStringKV("Name");
+        this.genericName = new LocaleStringKV("GenericName");
         this.noDisplay = new BooleanKV("NoDisplay");
-        this.comment = new StringKV("Comment");
-        this.icon = new StringKV("Icon");
+        this.comment = new LocaleStringKV("Comment");
+        this.icon = new LocaleStringKV("Icon");
         this.hidden = new BooleanKV("Hidden");
         this.onlyShowIn = new StringsKV("OnlyShowIn");
         this.notShowIn = new StringsKV("NotShowIn");
@@ -83,7 +84,7 @@ public class DesktopEntryFile
         this.mimeType = new StringsKV("MimeType");
         this.categories = new StringsKV("Categories");
         this.implement = new StringsKV("Implements");
-        this.keywords = new StringsKV("Keywords");
+        this.keywords = new LocaleStringsKV("Keywords");
         this.startupNotify = new BooleanKV("StartupNotify");
         this.startupWMClass = new StringKV("StartupWMClass");
         this.url = new StringKV("URL");
@@ -124,9 +125,9 @@ public class DesktopEntryFile
         return this;
     }
 
-    public DesktopEntryFile withGenericName(String genericName)
+    public DesktopEntryFile withGenericName(String genericName, List<LocalizedString> localizedGenericNames)
     {
-        this.genericName.setValue(genericName);
+        this.genericName.setValue(genericName, localizedGenericNames);
         return this;
     }
 
@@ -136,15 +137,15 @@ public class DesktopEntryFile
         return this;
     }
 
-    public DesktopEntryFile withComment(String comment)
+    public DesktopEntryFile withComment(String comment, List<LocalizedString> localizedComments)
     {
-        this.comment.setValue(comment);
+        this.comment.setValue(comment, localizedComments);
         return this;
     }
 
-    public DesktopEntryFile withIcon(String icon)
+    public DesktopEntryFile withIcon(String icon, List<LocalizedString> localizedIcons)
     {
-        this.icon.setValue(icon);
+        this.icon.setValue(icon, localizedIcons);
         return this;
     }
 
@@ -196,9 +197,9 @@ public class DesktopEntryFile
         return this;
     }
 
-    public DesktopEntryFile withAction(String actionName, String name, String icon, String exec)
+    public DesktopEntryFile withAction(String actionName, String name, List<LocalizedString> localizedNames, String icon, List<LocalizedString> localizedIcons, String exec)
     {
-        ActionEntity ae = new ActionEntity(actionName, name, icon, exec).build();
+        ActionEntity ae = new ActionEntity(actionName, name, localizedNames, icon, localizedIcons, exec).build();
         this.actions.add(ae);
         return this;
     }
@@ -221,9 +222,9 @@ public class DesktopEntryFile
         return this;
     }
 
-    public DesktopEntryFile withKeywords(List<String> keywords)
+    public DesktopEntryFile withKeywords(List<String> keywords, List<LocalizedStrings> localizedValues)
     {
-        this.keywords.setValues(keywords);
+        this.keywords.setValues(keywords, localizedValues);
         return this;
     }
 

@@ -7,7 +7,7 @@ public class BooleanKV extends Key
     public BooleanKV(String name)
     {
         super(name);
-        value = null;
+        this.value = null;
     }
 
     public void setValue(boolean value)
@@ -18,7 +18,7 @@ public class BooleanKV extends Key
     @Override
     public String toString()
     {
-        if(value == null)
+        if(this.value == null)
         {
             return "";
         }
