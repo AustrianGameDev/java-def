@@ -9,8 +9,19 @@ public class ActionEntity
     private LocaleStringKV icon;
     private StringKV exec;
 
-    public ActionEntity(String actionName, String name, List<LocalizedString> localizedNames, String icon, List<LocalizedString> localizedIcons, String exec)
+    public ActionEntity(String actionName, String name, List<LocalizedString> localizedNames, String icon,
+                        List<LocalizedString> localizedIcons, String exec)
+            throws NullPointerException, IllegalArgumentException
     {
+        if(actionName == null || name == null)
+        {
+            throw new NullPointerException();
+        }
+        if(actionName.equals("") || name.equals(""))
+        {
+            throw new IllegalArgumentException("Empty String not allowed!");
+        }
+
         initFields();
 
         this.ACTION_NAME = actionName;

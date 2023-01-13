@@ -7,8 +7,23 @@ public class LocalizedStrings
     private String postfix;
     private List<String> values;
 
-    public LocalizedStrings(String postfix, List<String> values)
+    /**
+     * @param postfix Required
+     * @param values Required
+     * @throws NullPointerException
+     * @throws IllegalArgumentException
+     */
+    public LocalizedStrings(String postfix, List<String> values) throws NullPointerException, IllegalArgumentException
     {
+        if(postfix == null || values == null)
+        {
+            throw new NullPointerException();
+        }
+        if(postfix.equals("") || values.size() == 0)
+        {
+            throw new IllegalArgumentException("Empty String or List not allowed!");
+        }
+
         this.postfix = postfix;
         this.values = values;
     }

@@ -7,6 +7,12 @@ import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DesktopEntryFile <br><br>
+ *
+ * For further information visit
+ * <a href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">this</a>
+ */
 public class DesktopEntryFile
 {
     private StringKV type;
@@ -37,9 +43,25 @@ public class DesktopEntryFile
 
     private List<Key> keyList;
 
+    /**
+     * @param type Required
+     * @param name Required
+     * @param localizedNames Can be null
+     * @param url The URL cannot be null when the type is LINK -> InvalidValueException
+     * @throws InvalidValueException
+     */
     public DesktopEntryFile(TypeEnum type, String name, List<LocalizedString> localizedNames, String url)
-            throws InvalidValueException
+            throws InvalidValueException, NullPointerException, IllegalArgumentException
     {
+        if(type == null || name == null)
+        {
+            throw new NullPointerException();
+        }
+        if(name.equals(""))
+        {
+            throw new IllegalArgumentException("Empty String not allowed!");
+        }
+
         init();
 
         switch(type)
@@ -198,7 +220,22 @@ public class DesktopEntryFile
         return this;
     }
 
-    public DesktopEntryFile withAction(String actionName, String name, List<LocalizedString> localizedNames, String icon, List<LocalizedString> localizedIcons, String exec)
+    /**
+     * For further information visit
+     * <a href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#extra-actions">
+     *     this</a>
+     * @param actionName Required
+     * @param name Required
+     * @param localizedNames Can be null
+     * @param icon Can be null
+     * @param localizedIcons Can be null
+     * @param exec Can be null
+     * @return
+     * @throws NullPointerException
+     */
+    public DesktopEntryFile withAction(String actionName, String name, List<LocalizedString> localizedNames,
+                                       String icon, List<LocalizedString> localizedIcons, String exec)
+    throws NullPointerException
     {
         ActionEntity ae = new ActionEntity(actionName, name, localizedNames, icon, localizedIcons, exec).build();
         this.actions.add(ae);
@@ -253,6 +290,13 @@ public class DesktopEntryFile
         return this;
     }
 
+    /**
+     * Save the DesktopEntryFile object to a file
+     * @param path
+     * @param name
+     * @param override true: overrides the existing file, false: throws an exception if the file already exists
+     * @throws FileAlreadyExistsException
+     */
     public void safeToFile(String path, String name, boolean override) throws FileAlreadyExistsException
     {
         DesktopEntryFileIO.safeDefToFile(this, path, name, override);
