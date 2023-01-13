@@ -3,6 +3,7 @@ package at.agd.def;
 import at.agd.def.exception.InvalidValueException;
 import at.agd.def.pojo.*;
 
+import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -250,6 +251,11 @@ public class DesktopEntryFile
     {
         this.singleMainWindow.setValue(singleMainWindow);
         return this;
+    }
+
+    public void safeToFile(String path, String name, boolean override) throws FileAlreadyExistsException
+    {
+        DesktopEntryFileIO.safeDefToFile(this, path, name, override);
     }
 
     @Override
