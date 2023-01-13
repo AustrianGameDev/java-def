@@ -1,5 +1,7 @@
 package at.agd.def.pojo;
 
+import at.agd.def.util.Util;
+
 import java.util.List;
 
 public class LocalizedStrings
@@ -37,11 +39,7 @@ public class LocalizedStrings
         }
 
         StringBuilder result = new StringBuilder("[").append(this.postfix).append("]=");
-        for(int i = 0; i < this.values.size(); i++)
-        {
-            result.append(this.values.get(i));
-            result.append(i < this.values.size() - 1 ? ";" : "");
-        }
+        result.append(Util.listToString(this.values));
         result.append("\n");
         return result.toString();
     }

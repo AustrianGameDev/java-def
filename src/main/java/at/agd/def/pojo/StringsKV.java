@@ -1,5 +1,7 @@
 package at.agd.def.pojo;
 
+import at.agd.def.util.Util;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +29,7 @@ public class StringsKV extends Key
         }
 
         StringBuilder result = new StringBuilder(this.name + "=");
-        for(int i = 0; i < this.values.size(); i++)
-        {
-            result.append(this.values.get(i));
-            result.append((i < this.values.size() - 1 ? ";" : ""));
-        }
+        result.append(Util.listToString(this.values));
         result.append("\n");
         return result.toString();
     }
