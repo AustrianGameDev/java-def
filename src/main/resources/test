@@ -1,0 +1,29 @@
+try
+{
+    List<LocalizedString> localizedNames = new ArrayList<>(Arrays.asList(
+            new LocalizedString("de", "Test DE"),
+            new LocalizedString("bg", "Тест BG")));
+
+    DesktopEntryFile def = new DesktopEntryFile(TypeEnum.APPLICATION, "Test", localizedNames, null)
+            .withComment("This is a comment", null)
+            .withIcon("<PATH>", null) // Replace with path to icon. For Example "/home/user/icon.png"
+            .withAction("Nautilus", "Nautilus", null, null, null, "nautilus")
+            .withAction("gedit", "gedit", null, null, null, "gedit")
+            .withTerminal(false)
+            .withExec("nautilus")
+            .withCategories(Arrays.asList("Development", "Education"));
+
+    def.withHidden(false).withVersion("1.5");
+
+    List<String> keywords = Arrays.asList("A", "B", "C", "D");
+    List<LocalizedStrings> localizedKeywords = Arrays.asList(
+            new LocalizedStrings("de", Arrays.asList("E", "F", "G", "H")),
+            new LocalizedStrings("bg", Arrays.asList("I", "J", "K", "L")));
+    def.withKeywords(keywords, localizedKeywords);
+
+    def.safeToFile("<PATH>", "test.desktop", false); // Replace with path to file
+}
+catch (InvalidValueException | FileAlreadyExistsException | NullPointerException | IllegalArgumentException e)
+{
+    throw new RuntimeException(e);
+}

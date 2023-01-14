@@ -1,0 +1,24 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Test
+Name[de]=Test DE
+Name[bg]=Тест BG
+Comment=This is a comment
+Icon=<PATH>
+Hidden=false
+Exec=nautilus
+Terminal=false
+Actions=Nautilus;gedit
+Categories=Development;Education
+Keywords=A;B;C;D
+Keywords[de]=E;F;G;H
+Keywords[bg]=I;J;K;L
+
+[Desktop Action Nautilus]
+Name=Nautilus
+Exec=nautilus
+
+[Desktop Action gedit]
+Name=gedit
+Exec=gedit
