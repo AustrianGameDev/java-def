@@ -1,9 +1,5 @@
 package at.agd.def.pojo;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public enum LocationEnum
 {
     USR("/usr/share/applications"),
