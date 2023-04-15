@@ -64,13 +64,7 @@ public class DesktopEntryFile
 
         init();
 
-        switch(type)
-        {
-            case APPLICATION -> this.type.setValue("Application");
-            case LINK -> this.type.setValue("Link");
-            case DIRECTORY -> this.type.setValue("Directory");
-        }
-
+        this.type.setValue(type.typeStr);
         this.name.setValue(name, localizedNames);
 
         if(type == TypeEnum.LINK)
